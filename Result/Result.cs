@@ -12,10 +12,7 @@ namespace Utilme
         public ResultStatus Status { get; } = ResultStatus.Ok;
         public string ErrorMessage { get; }
 
-        private Result(T value)
-        {
-            Value = value;
-        }
+        private Result(T value) => Value = value;
 
         private Result(ResultStatus status)
         {
@@ -33,40 +30,13 @@ namespace Utilme
             ErrorMessage = message;
         }
 
-        public static Result<T> Ok(T value)
-        {
-            return new Result<T>(value);
-        }
-
-        public static Result<T> Error(string message)
-        {
-            return new Result<T>(message);
-        }
-
-        public static Result<T> NotFound()
-        {
-            return new Result<T>(ResultStatus.NotFound);
-        }
-
-        public static Result<T> Timeout()
-        {
-            return new Result<T>(ResultStatus.Timeout);
-        }
-
-        public static Result<T> Cancelled()
-        {
-            return new Result<T>(ResultStatus.Cancelled);
-        }
-        
-        public static Result<T> NotSupported()
-        {
-            return new Result<T>(ResultStatus.NotSupported);
-        }
-        
-        public static Result<T> InvalidData()
-        {
-            return new Result<T>(ResultStatus.InvalidData);
-        }
+        public static Result<T> Ok(T value) => new Result<T>(value);
+        public static Result<T> Error(string message) => new Result<T>(message);
+        public static Result<T> NotFound => new Result<T>(ResultStatus.NotFound);
+        public static Result<T> Timeout => new Result<T>(ResultStatus.Timeout);
+        public static Result<T> Cancelled => new Result<T>(ResultStatus.Cancelled);
+        public static Result<T> NotSupported() => new Result<T>(ResultStatus.NotSupported);
+        public static Result<T> InvalidData() => new Result<T>(ResultStatus.InvalidData);                               
 
     }
 }
