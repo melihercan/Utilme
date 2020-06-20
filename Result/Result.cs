@@ -10,21 +10,27 @@ namespace Utilme
         public T Value { get; }
         public bool IsOk { get; } = true;
         public ResultStatus Status { get; } = ResultStatus.Ok;
-        public string Message { get; }
+        public string ErrorMessage { get; }
 
-        public Result(T value)
+        private Result(T value)
         {
             Value = value;
         }
 
-        private Result(ResultStatus status, string message)
+        private Result(ResultStatus status)
         {
             Status = status;
             if(status != ResultStatus.Ok)
             {
                 IsOk = false;
             }
-            Message = message ?? string.Empty;
+        }
+
+        private Result(string message)
+        {
+            Status = ResultStatus.Error;
+            IsOk = false;
+            ErrorMessage = message;
         }
 
         public static Result<T> Ok(T value)
@@ -32,34 +38,34 @@ namespace Utilme
             return new Result<T>(value);
         }
 
-        public static Result<T> Error(string message = null)
+        public static Result<T> Error(string message)
         {
-            return new Result<T>(ResultStatus.Error, message);
+            return new Result<T>(message);
         }
 
-        public static Result<T> NotFound(string message = null)
+        public static Result<T> NotFound()
         {
-            return new Result<T>(ResultStatus.NotFound, message);
+            return new Result<T>(ResultStatus.NotFound);
         }
 
-        public static Result<T> Timeout(string message = null)
+        public static Result<T> Timeout()
         {
-            return new Result<T>(ResultStatus.Timeout, message);
+            return new Result<T>(ResultStatus.Timeout);
         }
 
-        public static Result<T> Cancelled(string message = null)
+        public static Result<T> Cancelled()
         {
-            return new Result<T>(ResultStatus.Cancelled, message);
+            return new Result<T>(ResultStatus.Cancelled);
         }
         
-        public static Result<T> NotSupported(string message = null)
+        public static Result<T> NotSupported()
         {
-            return new Result<T>(ResultStatus.NotSupported, message);
+            return new Result<T>(ResultStatus.NotSupported);
         }
         
-        public static Result<T> InvalidData(string message = null)
+        public static Result<T> InvalidData()
         {
-            return new Result<T>(ResultStatus.InvalidData, message);
+            return new Result<T>(ResultStatus.InvalidData);
         }
 
     }
