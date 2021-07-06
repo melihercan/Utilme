@@ -21,6 +21,7 @@ Inspired from libsdptransform https://github.com/ibc/libsdptransform.git C++ lib
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AJP.JsonElementExtensions" Version="1.5.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
   </ItemGroup>
 
