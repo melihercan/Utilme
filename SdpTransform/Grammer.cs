@@ -38,8 +38,8 @@ namespace UtilmeSdpTransform
                             Name = "version",
                             Push = "",
                             Reg = new Regex("^(\\d*)$"),
-                            Names = { },
-                            Types = { 'd' },
+                            Names = new() { },
+                            Types = new() { 'd' },
                             Format = "%d"
                         }
                     }
@@ -57,9 +57,9 @@ namespace UtilmeSdpTransform
                         "",
                             Reg =
                         new Regex("^(\\S*) (\\d*) (\\d*) (\\S*) IP(\\d) (\\S*)"),
-                            Names =
+                            Names = new()
                         { "username", "sessionId", "sessionVersion", "netType", "ipVer", "address" },
-                            Types =
+                            Types = new()
                         { 's', 'u', 'u', 's', 'd', 's' },
                             Format =
                         "%s %d %d %s IP%d %s"
@@ -80,9 +80,9 @@ namespace UtilmeSdpTransform
                         "",
                             Reg =
                         new Regex("(.*)"),
-                            Names =
+                            Names = new()
                         { },
-                            Types =
+                            Types = new()
                         { 's' },
                             Format =
                         "%s"
@@ -103,9 +103,9 @@ namespace UtilmeSdpTransform
                         "",
                             Reg =
                         new Regex("(.*)"),
-                            Names =
+                            Names = new()
                         { },
-                            Types =
+                            Types = new()
                         { 's' },
                             Format =
                         "%s"
@@ -126,9 +126,9 @@ namespace UtilmeSdpTransform
                         "",
                             Reg =
                         new Regex("(.*)"),
-                            Names =
+                            Names = new()
                         { },
-                            Types =
+                            Types = new()
                         { 's' },
                             Format =
                         "%s"
@@ -149,9 +149,9 @@ namespace UtilmeSdpTransform
                         "",
                             Reg =
                         new Regex("(.*)"),
-                            Names =
+                            Names = new()
                         { },
-                            Types =
+                            Types = new()
                         { 's' },
                             Format =
                         "%s"
@@ -172,9 +172,9 @@ namespace UtilmeSdpTransform
                         "",
                             Reg =
                         new Regex("(.*)"),
-                            Names =
+                            Names = new()
                         { },
-                            Types =
+                            Types = new()
                         { 's' },
                             Format =
                         "%s"
@@ -194,9 +194,9 @@ namespace UtilmeSdpTransform
                         "",
                             Reg =
                         new Regex("(.*)"),
-                            Names =
+                            Names = new()
                         { },
-                            Types =
+                            Types = new()
                         { 's' },
                             Format =
                         "%s"
@@ -216,9 +216,9 @@ namespace UtilmeSdpTransform
                         "",
                             Reg =
                         new Regex("(.*)"),
-                            Names =
+                            Names = new()
                         { },
-                            Types =
+                            Types = new()
                         { 's' },
                             Format =
                         "%s"
@@ -239,9 +239,9 @@ namespace UtilmeSdpTransform
                         "",
                             Reg =
                         new Regex("^(\\d*) (\\d*)"),
-                            Names =
+                            Names = new()
                         { "start", "stop" },
-                            Types =
+                            Types = new()
                         { 'd', 'd' },
                             Format =
                         "%d %d"
@@ -262,9 +262,9 @@ namespace UtilmeSdpTransform
                         "",
                             Reg =
                         new Regex("^IN IP(\\d) ([^\\\\S/]*)(?:/(\\d*))?"),
-                            Names =
+                            Names = new()
                         { "version", "ip", "ttl" },
-                            Types =
+                            Types = new()
                         { 'd', 's', 'd' },
                             Format =
                         "",
@@ -292,9 +292,9 @@ namespace UtilmeSdpTransform
                     "bandwidth",
                             Reg =
                     new Regex("^(TIAS|AS|CT|RR|RS):(\\d*)"),
-                            Names =
+                            Names = new()
                     { "type", "limit" },
-                            Types =
+                            Types = new()
                     { 's', 'd' },
                             Format =
                     "%s:%d"
@@ -315,7 +315,7 @@ namespace UtilmeSdpTransform
                         "",
                             Reg =
                         new Regex("^(\\w*) (\\d*)(?:/(\\d*))? ([\\w\\/]*)(?: (.*))?"),
-                            Names =
+                            Names = new()
                         {
                             "type",
                             "port",
@@ -323,7 +323,7 @@ namespace UtilmeSdpTransform
                             "protocol",
                             "payloads"
                         },
-                            Types =
+                            Types = new()
                         { 's', 'd', 'd', 's', 's' },
                             Format =
                         "",
@@ -351,9 +351,9 @@ namespace UtilmeSdpTransform
                         "rtp",
                             Reg =
                         new Regex("^rtpmap:(\\d*) ([\\w\\-\\.]*)(?:\\s*\\/(\\d*)(?:\\s*\\/(\\S*))?)?"),
-                            Names =
+                            Names = new()
                         { "payload", "codec", "rate", "encoding" },
-                            Types =
+                            Types = new()
                         { 'd', 's', 'd', 's' },
                             Format =
                         "",
@@ -378,9 +378,9 @@ namespace UtilmeSdpTransform
                         "fmtp",
                             Reg =
                         new Regex("^fmtp:(\\d*) (.*)"),
-                            Names =
+                            Names = new()
                         { "payload", "config" },
-                            Types =
+                            Types = new()
                         { 'd', 's' },
                             Format =
                         "fmtp:%d %s"
@@ -395,9 +395,9 @@ namespace UtilmeSdpTransform
                         "",
                             Reg =
                         new Regex("^control:(.*)"),
-                            Names =
+                            Names = new()
                         { },
-                            Types =
+                            Types = new()
                         { 's' },
                             Format =
                         "control:%s"
@@ -413,9 +413,9 @@ namespace UtilmeSdpTransform
                         "",
                             Reg =
                         new Regex("^rtcp:(\\d*)(?: (\\S*) IP(\\d) (\\S*))?"),
-                            Names =
+                            Names = new()
                         { "port", "netType", "ipVer", "address" },
-                            Types =
+                            Types = new()
                         { 'd', 's', 'd', 's' },
                             Format =
                         "",
@@ -437,9 +437,9 @@ namespace UtilmeSdpTransform
                         "rtcpFbTrrInt",
                             Reg =
                         new Regex("^rtcp-fb:(\\*|\\d*) trr-int (\\d*)"),
-                            Names =
+                            Names = new()
                         { "payload", "value" },
-                            Types =
+                            Types = new()
                         { 's', 'd' },
                             Format =
                         "rtcp-fb:%s trr-int %d"
@@ -455,9 +455,9 @@ namespace UtilmeSdpTransform
                         "rtcpFb",
                             Reg =
                         new Regex("^rtcp-fb:(\\*|\\d*) ([\\w\\-_]*)(?: ([\\w\\-_]*))?"),
-                            Names =
+                            Names = new()
                         { "payload", "type", "subtype" },
-                            Types =
+                            Types = new()
                         { 's', 's', 's' },
                             Format =
                         "",
@@ -481,9 +481,9 @@ namespace UtilmeSdpTransform
                         "ext",
                             Reg =
                         new Regex("^extmap:(\\d+)(?:\\/(\\w+))?(?: (urn:ietf:params:rtp-hdrext:encrypt))? (\\S*)(?: (\\S*))?"),
-                            Names =
+                            Names = new()
                         { "value", "direction", "encrypt-uri", "uri", "config" },
-                            Types =
+                            Types = new()
                         { 'd', 's', 's', 's', 's' },
                             Format =
                         "",
@@ -507,9 +507,9 @@ namespace UtilmeSdpTransform
                         "",
                             Reg =
                         new Regex("^(extmap-allow-mixed)"),
-                            Names =
+                            Names = new()
                         { },
-                            Types =
+                            Types = new()
                         { 's' },
                             Format =
                         "%s"
@@ -525,9 +525,9 @@ namespace UtilmeSdpTransform
                         "crypto",
                             Reg =
                         new Regex("^crypto:(\\d*) ([\\w_]*) (\\S*)(?: (\\S*))?"),
-                            Names =
+                            Names = new()
                         { "id", "suite", "config", "sessionConfig" },
-                            Types =
+                            Types = new()
                         { 'd', 's', 's', 's' },
                             Format =
                         "",
@@ -549,9 +549,9 @@ namespace UtilmeSdpTransform
                         "",
                             Reg =
                         new Regex("^setup:(\\w*)"),
-                            Names =
+                            Names = new()
                         { },
-                            Types =
+                            Types = new()
                         { 's' },
                             Format =
                         "setup:%s"
@@ -567,9 +567,9 @@ namespace UtilmeSdpTransform
                         "",
                             Reg =
                         new Regex("^mid:([^\\s]*)"),
-                            Names =
+                            Names = new()
                         { },
-                            Types =
+                            Types = new()
                         { 's' },
                             Format =
                         "mid:%s"
@@ -585,9 +585,9 @@ namespace UtilmeSdpTransform
                         "",
                             Reg =
                         new Regex("^msid:(.*)"),
-                            Names =
+                            Names = new()
                         { },
-                            Types =
+                            Types = new()
                         { 's' },
                             Format =
                         "msid:%s"
@@ -603,9 +603,9 @@ namespace UtilmeSdpTransform
                         "",
                             Reg =
                         new Regex("^ptime:(\\d*)"),
-                            Names =
+                            Names = new()
                         { },
-                            Types =
+                            Types = new()
                         { 'd' },
                             Format =
                         "ptime:%d"
@@ -621,9 +621,9 @@ namespace UtilmeSdpTransform
                         "",
                             Reg =
                         new Regex("^maxptime:(\\d*)"),
-                            Names =
+                            Names = new()
                         { },
-                            Types =
+                            Types = new()
                         { 'd' },
                             Format =
                         "maxptime:%d"
@@ -639,9 +639,9 @@ namespace UtilmeSdpTransform
                         "",
                             Reg =
                         new Regex("^(sendrecv|recvonly|sendonly|inactive)"),
-                            Names =
+                            Names = new()
                         { },
-                            Types =
+                            Types = new()
                         { 's' },
                             Format =
                         "%s"
@@ -657,9 +657,9 @@ namespace UtilmeSdpTransform
                         "",
                             Reg =
                         new Regex("^(ice-lite)"),
-                            Names =
+                            Names = new()
                         { },
-                            Types =
+                            Types = new()
                         { 's' },
                             Format =
                         "%s"
@@ -675,9 +675,9 @@ namespace UtilmeSdpTransform
                         "",
                             Reg =
                         new Regex("^ice-ufrag:(\\S*)"),
-                            Names =
+                            Names = new()
                         { },
-                            Types =
+                            Types = new()
                         { 's' },
                             Format =
                         "ice-ufrag:%s"
@@ -693,9 +693,9 @@ namespace UtilmeSdpTransform
                         "",
                             Reg =
                         new Regex("^ice-pwd:(\\S*)"),
-                            Names =
+                            Names = new()
                         { },
-                            Types =
+                            Types = new()
                         { 's' },
                             Format =
                         "ice-pwd:%s"
@@ -711,9 +711,9 @@ namespace UtilmeSdpTransform
                         "",
                             Reg =
                         new Regex("^fingerprint:(\\S*) (\\S*)"),
-                            Names =
+                            Names = new()
                         { "type", "hash" },
-                            Types =
+                            Types = new()
                         { 's', 's' },
                             Format =
                         "fingerprint:%s %s"
@@ -733,9 +733,9 @@ namespace UtilmeSdpTransform
                         "candidates",
                             Reg =
                         new Regex("^candidate:(\\S*) (\\d*) (\\S*) (\\d*) (\\S*) (\\d*) typ (\\S*)(?: raddr (\\S*) rport (\\d*))?(?: tcptype (\\S*))?(?: generation (\\d*))?(?: network-id (\\d*))?(?: network-cost (\\d*))?"),
-                            Names =
+                            Names = new()
                         { "foundation", "component", "transport", "priority", "ip", "port", "type", "raddr", "rport", "tcptype", "generation", "network-id", "network-cost" },
-                            Types =
+                            Types = new()
                         { 's', 'd', 's', 'd', 's', 'd', 's', 's', 'd', 's', 'd', 'd', 'd', 'd' },
                             Format =
                         "",
@@ -769,9 +769,9 @@ namespace UtilmeSdpTransform
                         "",
                             Reg =
                         new Regex("^(end-of-candidates)"),
-                            Names =
+                            Names = new()
                         { },
-                            Types =
+                            Types = new()
                         { 's' },
                             Format =
                         "%s"
@@ -787,9 +787,9 @@ namespace UtilmeSdpTransform
                         "",
                             Reg =
                         new Regex("^remote-candidates:(.*)"),
-                            Names =
+                            Names = new()
                         { },
-                            Types =
+                            Types = new()
                         { 's' },
                             Format =
                         "remote-candidates:%s"
@@ -805,9 +805,9 @@ namespace UtilmeSdpTransform
                         "",
                             Reg =
                         new Regex("^ice-options:(\\S*)"),
-                            Names =
+                            Names = new()
                         { },
-                            Types =
+                            Types = new()
                         { 's' },
                             Format =
                         "ice-options:%s"
@@ -823,9 +823,9 @@ namespace UtilmeSdpTransform
                         "ssrcs",
                             Reg =
                         new Regex("^ssrc:(\\d*) ([\\w_-]*)(?::(.*))?"),
-                            Names =
+                            Names = new()
                         { "id", "attribute", "value" },
-                            Types =
+                            Types = new()
                         { 'd', 's', 's' },
                             Format =
                         "",
@@ -856,9 +856,9 @@ namespace UtilmeSdpTransform
                         "ssrcGroups",
                             Reg =
                         new Regex("^ssrc-group:([\x21\x23\x24\x25\x26\x27\x2A\x2B\x2D\x2E\\w]*) (.*)"),
-                            Names =
+                            Names = new()
                         { "semantics", "ssrcs" },
-                            Types =
+                            Types = new()
                         { 's', 's' },
                             Format =
                         "ssrc-group:%s %s"
@@ -874,9 +874,9 @@ namespace UtilmeSdpTransform
                         "",
                             Reg =
                         new Regex("^msid-semantic:\\s?(\\w*) (\\S*)"),
-                            Names =
+                            Names = new()
                         { "semantic", "token" },
-                            Types =
+                            Types = new()
                         { 's', 's' },
                             Format =
                         "msid-semantic: %s %s" // Space after ':' is not accidental.
@@ -892,9 +892,9 @@ namespace UtilmeSdpTransform
                         "groups",
                             Reg =
                         new Regex("^group:(\\w*) (.*)"),
-                            Names =
+                            Names = new()
                         { "type", "mids" },
-                            Types =
+                            Types = new()
                         { 's', 's' },
                             Format =
                         "group:%s %s"
@@ -910,9 +910,9 @@ namespace UtilmeSdpTransform
                         "",
                             Reg =
                         new Regex("^(rtcp-mux)"),
-                            Names =
+                            Names = new()
                         { },
-                            Types =
+                            Types = new()
                         { 's' },
                             Format =
                         "%s"
@@ -928,9 +928,9 @@ namespace UtilmeSdpTransform
                         "",
                             Reg =
                         new Regex("^(rtcp-rsize)"),
-                            Names =
+                            Names = new()
                         { },
-                            Types =
+                            Types = new()
                         { 's' },
                             Format =
                         "%s"
@@ -946,9 +946,9 @@ namespace UtilmeSdpTransform
                         "",
                             Reg =
                         new Regex("^sctpmap:(\\d+) (\\S*)(?: (\\d*))?"),
-                            Names =
+                            Names = new()
                         { "sctpmapNumber", "app", "maxMessageSize" },
-                            Types =
+                            Types = new()
                         { 'd', 's', 'd' },
                             Format =
                         "",
@@ -970,9 +970,9 @@ namespace UtilmeSdpTransform
                         "",
                             Reg =
                         new Regex("x-google-flag:([^\\s]*)"),
-                            Names =
+                            Names = new()
                         { },
-                            Types =
+                            Types = new()
                         { 's' },
                             Format =
                         "x-google-flag:%s"
@@ -988,9 +988,9 @@ namespace UtilmeSdpTransform
                         "rids",
                             Reg =
                         new Regex("^rid:([\\d\\w]+) (\\w+)(?: (.*))?"),
-                            Names =
+                            Names = new()
                         { "id", "direction", "params" },
-                            Types =
+                            Types = new()
                         { 's', 's', 's' },
                             Format =
                         "",
@@ -1023,9 +1023,9 @@ namespace UtilmeSdpTransform
                             // recv *
                             "(?:[\\s\\t]+(recv|send)[\\s\\t]+(\\*|\\[\\S+\\](?:[\\s\\t]+\\[\\S+\\])*))?"
                         ),
-                            Names =
+                            Names = new()
                         { "pt", "dir1", "attrs1", "dir2", "attrs2" },
-                            Types =
+                            Types = new()
                         { 's', 's', 's', 's', 's' },
                             Format =
                         "",
@@ -1056,9 +1056,9 @@ namespace UtilmeSdpTransform
                             // end
                             "$"
                         ),
-                            Names =
+                            Names = new()
                         { "dir1", "list1", "dir2", "list2" },
-                            Types =
+                            Types = new()
                         { 's', 's', 's', 's' },
                             Format =
                         "",
@@ -1082,9 +1082,9 @@ namespace UtilmeSdpTransform
                         "",
                             Reg =
                         new Regex("^simulcast: (.+)$"),
-                            Names =
+                            Names = new()
                         { "value" },
-                            Types =
+                            Types = new()
                         { 's' },
                             Format =
                         "simulcast: %s"
@@ -1101,9 +1101,9 @@ namespace UtilmeSdpTransform
                         "",
                             Reg =
                         new Regex("^framerate:(\\d+(?:$|\\.\\d+))"),
-                            Names =
+                            Names = new()
                         { },
-                            Types =
+                            Types = new()
                         { 'f' },
                             Format =
                         "framerate:%s"
@@ -1119,9 +1119,9 @@ namespace UtilmeSdpTransform
                         "",
                             Reg =
                         new Regex("^source-filter:[\\s\\t]+(excl|incl) (\\S*) (IP4|IP6|\\*) (\\S*) (.*)"),
-                            Names =
+                            Names = new()
                         { "filterMode", "netType", "addressTypes", "destAddress", "srcList" },
-                            Types =
+                            Types = new()
                         { 's', 's', 's', 's', 's' },
                             Format =
                         "source-filter: %s %s %s %s %s"
@@ -1137,9 +1137,9 @@ namespace UtilmeSdpTransform
                         "",
                             Reg =
                         new Regex("^ts-refclk:(.*)"),
-                            Names =
+                            Names = new()
                         { },
-                            Types =
+                            Types = new()
                         { 's' },
                             Format =
                         "ts-refclk:%s"
@@ -1155,9 +1155,9 @@ namespace UtilmeSdpTransform
                         "",
                             Reg =
                         new Regex("^mediaclk:(.*)"),
-                            Names =
+                            Names = new()
                         { },
-                            Types =
+                            Types = new()
                         { 's' },
                             Format =
                         "mediaclk:%s"
@@ -1173,9 +1173,9 @@ namespace UtilmeSdpTransform
                         "invalid",
                             Reg =
                         new Regex("(.*)"),
-                            Names =
+                            Names = new()
                         { "value" },
-                            Types =
+                            Types = new()
                         { 's' },
                             Format =
                         "%s"
