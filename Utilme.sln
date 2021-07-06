@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Result", "Result\Result.csproj", "{F7381261-B407-4D04-9D0A-55ED76EDD8A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Result", "Result\Result.csproj", "{F7381261-B407-4D04-9D0A-55ED76EDD8A6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Disposable", "Disposable\Disposable.csproj", "{4226722B-813F-477C-A33A-44457E7046B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SdpTransform", "SdpTransform\SdpTransform.csproj", "{5B57220E-646D-4000-A2B0-F61F32B25A60}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{F7381261-B407-4D04-9D0A-55ED76EDD8A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7381261-B407-4D04-9D0A-55ED76EDD8A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7381261-B407-4D04-9D0A-55ED76EDD8A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4226722B-813F-477C-A33A-44457E7046B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4226722B-813F-477C-A33A-44457E7046B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4226722B-813F-477C-A33A-44457E7046B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4226722B-813F-477C-A33A-44457E7046B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B57220E-646D-4000-A2B0-F61F32B25A60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B57220E-646D-4000-A2B0-F61F32B25A60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B57220E-646D-4000-A2B0-F61F32B25A60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B57220E-646D-4000-A2B0-F61F32B25A60}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
