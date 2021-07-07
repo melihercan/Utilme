@@ -11,6 +11,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SdpTransform", "SdpTransfor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoApp", "DemoApp\DemoApp.csproj", "{50D2466D-7629-4E93-8008-4EE03E6E477A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SdpTransformJScriptTest", "SdpTransformJScriptTest", "{18F750D1-A62F-4127-9B81-9B72FDD76B5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SdpTransformTestApp", "SdpTransportJScriptTest\SdpTransformTestApp\SdpTransformTestApp.csproj", "{6641FFF7-E65F-41DD-A91B-9CC536E5D0A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SdpTransformTestRcl", "SdpTransportJScriptTest\SdpTransformTestRcl\SdpTransformTestRcl.csproj", "{30799E39-5FBA-4F96-92B0-4BC863261195}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,9 +39,21 @@ Global
 		{50D2466D-7629-4E93-8008-4EE03E6E477A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50D2466D-7629-4E93-8008-4EE03E6E477A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50D2466D-7629-4E93-8008-4EE03E6E477A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6641FFF7-E65F-41DD-A91B-9CC536E5D0A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6641FFF7-E65F-41DD-A91B-9CC536E5D0A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6641FFF7-E65F-41DD-A91B-9CC536E5D0A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6641FFF7-E65F-41DD-A91B-9CC536E5D0A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30799E39-5FBA-4F96-92B0-4BC863261195}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30799E39-5FBA-4F96-92B0-4BC863261195}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30799E39-5FBA-4F96-92B0-4BC863261195}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30799E39-5FBA-4F96-92B0-4BC863261195}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6641FFF7-E65F-41DD-A91B-9CC536E5D0A3} = {18F750D1-A62F-4127-9B81-9B72FDD76B5C}
+		{30799E39-5FBA-4F96-92B0-4BC863261195} = {18F750D1-A62F-4127-9B81-9B72FDD76B5C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F8E94381-2C17-46E5-A548-55E527D8EC9C}
