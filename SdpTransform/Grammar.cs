@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace UtilmeSdpTransform
 {
-    class Grammer
+    class Grammar
     {
         public class Rule
         {
@@ -25,7 +25,7 @@ namespace UtilmeSdpTransform
         //public readonly Dictionary<char, List<Rule>> Rules;
         public readonly Dictionary<char, Rule[]> Rules;
 
-        public Grammer()
+        public Grammar()
         {
             Rules = new()
             {

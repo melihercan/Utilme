@@ -32,4 +32,8 @@ Inspired from libsdptransform https://github.com/ibc/libsdptransform.git C++ lib
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
 </Project>

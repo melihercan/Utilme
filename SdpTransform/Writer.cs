@@ -11,7 +11,7 @@ namespace UtilmeSdpTransform
 {
     class Writer
     {
-        readonly Grammer _grammer = new();
+        readonly Grammar _grammer = new();
         readonly char[] _outerOrders = { 'v', 'o', 's', 'i', 'u', 'e', 'p', 'c', 'b', 't', 'r', 'z', 'a' };
         readonly char[] _innerOrders = { 'i', 'c', 'b', 'a' };
         readonly Regex _formatRegExp = new("/%[sdv%]/g");
@@ -88,7 +88,7 @@ namespace UtilmeSdpTransform
         }
 
 
-        string MakeLine(char type, Grammer.Rule obj, string location)
+        string MakeLine(char type, Grammar.Rule obj, string location)
         {
             var jElement = JsonDocument.Parse(location).RootElement;
 

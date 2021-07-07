@@ -9,7 +9,7 @@ namespace UtilmeSdpTransform
 {
     class Parser
     {
-        Grammer _grammer = new();
+        Grammar _grammer = new();
 
         public string Parse(string sdp)
         {
