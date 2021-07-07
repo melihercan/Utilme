@@ -1184,6 +1184,17 @@ namespace UtilmeSdpTransform
                                 }
                 ***/
             };
+
+            // Default values if not already assigned.
+            foreach (var objs in Rules.Values)
+            {
+                foreach (var obj in objs)
+                {
+                    obj.Reg ??= new Regex("(.*)");
+                    if (obj.Format is null && obj.FormatFunc is null)
+                        obj.Format = "%s";
+                }
+            }
         }
 
         //bool HasValue(string o, string key)
