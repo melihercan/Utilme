@@ -1,19 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace Utilme.SdpTransform
+namespace Utilme.SdpTransform;
+
+public class JsonCamelCaseStringEnumConverter : JsonConverterFactory
 {
-    public class JsonCamelCaseStringEnumConverter : JsonConverterFactory
-    {
-        private static readonly JsonStringEnumConverter _jsonStringEnumConverter = new(JsonNamingPolicy.CamelCase);
+    private static readonly JsonStringEnumConverter _jsonStringEnumConverter = new(JsonNamingPolicy.CamelCase);
 
-        public override bool CanConvert(Type typeToConvert) =>
-            _jsonStringEnumConverter.CanConvert(typeToConvert);
+    public override bool CanConvert(Type typeToConvert) =>
+        _jsonStringEnumConverter.CanConvert(typeToConvert);
 
-        public override JsonConverter CreateConverter(Type typeToConvert, JsonSerializerOptions options) =>
-            _jsonStringEnumConverter.CreateConverter(typeToConvert, options);
-    }
+    public override JsonConverter CreateConverter(Type typeToConvert, JsonSerializerOptions options) =>
+        _jsonStringEnumConverter.CreateConverter(typeToConvert, options);
 }
