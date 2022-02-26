@@ -18,6 +18,8 @@ public static class ModelExtensions
             Sdp sdp = new();
 
             var tokens = str.Split(new string[] { Sdp.CRLF }, StringSplitOptions.RemoveEmptyEntries);
+            tokens = tokens.Select(t => t.Trim()).ToArray();
+
             var idx = 0;
 
             // Session fields.
@@ -927,7 +929,7 @@ public static class ModelExtensions
             Type = tokens[7].EnumFromDisplayName<CandidateType>(),
         };
         var idx = 8;
-        if (tokens.Length >= 8 && tokens[8] == Candidate.Raddr)
+        if (tokens.Length > 8 && tokens[8] == Candidate.Raddr)
         {
             candidate.RelAddr = tokens[9];
             candidate.RelPort = int.Parse(tokens[11]);
