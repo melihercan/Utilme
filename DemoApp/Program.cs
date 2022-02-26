@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using Utilme.SdpTransform;
 
 namespace DemoApp;
@@ -66,11 +67,18 @@ class Program
                 a=extmap:12 urn:ietf:params:rtp-hdrext:toffset 
                 ";
 
+        
+        // Convert text to object and back.
         var sdpObject = sdpText.ToSdp();
         var sdpTextFromObject = sdpObject.ToText();
         Console.WriteLine(sdpTextFromObject);
 
-        var json = JsonSerializer.Serialize(sdpObject);
+        // Convert object to JSON, deserialize and back to text.
+        var json = JsonSerializer.Serialize(sdpObject, new JsonSerializerOptions 
+        { 
+            // Ignore null values when serializing.
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull 
+        });
         Console.WriteLine(json);
         var sdpObjectFromJson = JsonSerializer.Deserialize<Sdp>(json);
         var sdpTextFromJson = sdpObjectFromJson.ToText();
