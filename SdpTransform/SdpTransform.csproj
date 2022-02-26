@@ -16,19 +16,10 @@ It transforms between SDP text, object, and JSON representations.</Description>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>.NET SDP Transform Text Object JSON</PackageTags>
 		<PackageReleaseNotes>Creation</PackageReleaseNotes>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="README.md" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <None Include="..\doc\me.png">
-	    <Pack>True</Pack>
-	    <PackagePath>\</PackagePath>
-	  </None>
-	  <None Include="..\Result\README.md">
 	    <Pack>True</Pack>
 	    <PackagePath>\</PackagePath>
 	  </None>

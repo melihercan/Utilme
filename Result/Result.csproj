@@ -18,19 +18,10 @@ On success, the library returns a result object; on failure, it returns an error
     <RepositoryType>git</RepositoryType>
     <PackageTags>.NET Result Status Error</PackageTags>
     <PackageReleaseNotes>Creation</PackageReleaseNotes>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="README.md" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="..\doc\me.png">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-    <None Include="..\SdpTransform\README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>

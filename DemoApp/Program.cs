@@ -68,20 +68,21 @@ class Program
                 ";
 
         
-        // Convert text to object and back.
+        // Convert SDP text to object and back.
         var sdpObject = sdpText.ToSdp();
         var sdpTextFromObject = sdpObject.ToText();
-        Console.WriteLine(sdpTextFromObject);
+        Console.WriteLine($"SDP OBJECT TO TEXT:{Environment.NewLine}{sdpTextFromObject}");
 
-        // Convert object to JSON, deserialize and back to text.
+        // Convert SDP object to JSON, deserialize and back to text.
         var json = JsonSerializer.Serialize(sdpObject, new JsonSerializerOptions 
         { 
             // Ignore null values when serializing.
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull 
         });
         Console.WriteLine(json);
+        Console.WriteLine();
         var sdpObjectFromJson = JsonSerializer.Deserialize<Sdp>(json);
         var sdpTextFromJson = sdpObjectFromJson.ToText();
-        Console.WriteLine(sdpTextFromJson);
+        Console.WriteLine($"SDP JSON TO OBJECT:{Environment.NewLine}{sdpTextFromJson}");
     }
 }
