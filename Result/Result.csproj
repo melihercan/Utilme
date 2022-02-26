@@ -5,10 +5,11 @@
     <LangVersion>10.0</LangVersion>
     <RootNamespace>UtilmeResult</RootNamespace>
     <AssemblyName>Utilme.Result</AssemblyName>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Authors>melihercan</Authors>
-    <Description>Generic result library returning result object on success or error reporing on failure.</Description>
-    <Copyright>melihercan 2021</Copyright>
+    <Description>A generic Result library.
+On success, the library returns a result object; on failure, it returns an error.</Description>
+    <Copyright>melihercan 2022</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/melihercan/Utilme</PackageProjectUrl>
     <PackageIcon>me.png</PackageIcon>
@@ -17,6 +18,22 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>.NET Result Status Error</PackageTags>
     <PackageReleaseNotes>Creation</PackageReleaseNotes>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="README.md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\doc\me.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\SdpTransform\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>

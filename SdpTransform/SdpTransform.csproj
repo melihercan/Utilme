@@ -5,7 +5,34 @@
 		<LangVersion>10.0</LangVersion>
 		<AssemblyName>Utilme.SdpTransform</AssemblyName>
 		<RootNamespace>UtilmeSdpTransform</RootNamespace>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Authors>melihercan</Authors>
+		<Description>SDP parser and writer for .NET.
+It transforms between SDP text, object, and JSON representations.</Description>
+		<Copyright>melihercan 2022</Copyright>
+		<PackageProjectUrl>https://github.com/melihercan/Utilme</PackageProjectUrl>
+		<PackageIcon>me.png</PackageIcon>
+		<RepositoryUrl>https://github.com/melihercan/Utilme/tree/master/SdpTransform</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>.NET SDP Transform Text Object JSON</PackageTags>
+		<PackageReleaseNotes>Creation</PackageReleaseNotes>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Remove="README.md" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="..\doc\me.png">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	  <None Include="..\Result\README.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Macross.Json.Extensions" Version="2.2.0" />
