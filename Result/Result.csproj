@@ -8,7 +8,7 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Authors>melihercan</Authors>
     <Description>A generic Result library.
-On success, the library returns a result object; on failure, it returns an error.</Description>
+Reports status code of an operation. On success, the result object is associated, on error the error string is associated.</Description>
     <Copyright>melihercan 2022</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/melihercan/Utilme</PackageProjectUrl>
@@ -17,7 +17,10 @@ On success, the library returns a result object; on failure, it returns an error
     <RepositoryUrl>https://github.com/melihercan/Utilme/tree/master/Result</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>.NET Result Status Error</PackageTags>
-    <PackageReleaseNotes>Creation</PackageReleaseNotes>
+    <PackageReleaseNotes>Added NetworkUp and NetworkDown status codes.</PackageReleaseNotes>
+    <AssemblyVersion>1.0.1</AssemblyVersion>
+    <FileVersion>1.0.1</FileVersion>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

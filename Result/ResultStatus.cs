@@ -13,5 +13,7 @@ namespace Utilme
         Cancelled,
         NotSupported,
         InvalidData,
+        NetworkUp,
+        NetworkDown,
     }
 }

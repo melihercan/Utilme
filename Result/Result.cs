@@ -34,7 +34,8 @@ namespace Utilme
         public static Result<T> Timeout => new Result<T>(ResultStatus.Timeout);
         public static Result<T> Cancelled => new Result<T>(ResultStatus.Cancelled);
         public static Result<T> NotSupported() => new Result<T>(ResultStatus.NotSupported);
-        public static Result<T> InvalidData() => new Result<T>(ResultStatus.InvalidData);                               
-
+        public static Result<T> InvalidData() => new Result<T>(ResultStatus.InvalidData);
+        public static Result<T> NetworkUp() => new Result<T>(ResultStatus.NetworkUp);
+        public static Result<T> NetworkDown() => new Result<T>(ResultStatus.NetworkDown);
     }
 }
