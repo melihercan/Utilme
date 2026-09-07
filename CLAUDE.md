@@ -45,13 +45,23 @@ Running it also prints one `==== SDP unsupported media description field:` warni
 
 `GeneratePackageOnBuild` is `True` on both libraries, so every build drops a `.nupkg` into `bin/<Config>/`. Package version and release notes are properties in the `.csproj` (`Version`, `AssemblyVersion`, `FileVersion`, `PackageReleaseNotes`) — bump them there when publishing.
 
-**Packaging is moving to a CI workflow** (build → pack → push to the NuGet feed), planned but not yet
-written. Do not add local packaging scaffolding. Three known metadata gaps should be fixed as part of
-that work, since they travel with the csproj rather than with wherever `pack` runs: neither package
-sets `PackageReadmeFile` (so no readme reaches NuGet.org), `SdpTransform` declares no
-`PackageLicenseExpression` (it shows as licence-unspecified despite the repo being MIT), and
-`SdpTransform` declares no `Version` at all, so it packs as `1.0.0` every time even though its code
-has changed. `GeneratePackageOnBuild` itself is a candidate for removal once CI owns packaging.
+**Packaging is done by GitHub Actions**, in `.github/workflows/`:
+
+- `ci.yml` — build and test on every push and PR to master. Builds with `-warnaserror`, so the
+  repository's zero-warning bar is enforced there, and a new NuGet advisory fails the build.
+- `publish-result.yml` / `publish-sdptransform.yml` — one per package. Triggered by a tag
+  (`result-v<version>` / `sdptransform-v<version>`), or manually, where the default is a dry run that
+  packs and uploads the `.nupkg` as a build artifact without publishing. Both verify the tag matches
+  the csproj `<Version>` before packing, run the tests, and push with `--skip-duplicate`. They need
+  the `NUGET_API_KEY` repository secret.
+
+`GeneratePackageOnBuild` has been **removed** from both libraries now that CI owns packaging — local
+builds no longer emit a `.nupkg`. Use `dotnet pack` explicitly when you want one.
+
+Both packages set `PackageReadmeFile`, `PackageLicenseExpression` and a date-based `<Version>`
+(`26.09.07`, which NuGet normalises to `26.9.7`). `SdpTransform` deliberately does **not** set
+`GenerateDocumentationFile`: its public members are not XML-documented, so turning it on would emit
+hundreds of CS1591 warnings and break the zero-warning bar.
 
 ## Targeting
 

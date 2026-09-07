@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build and test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Restore
+        run: dotnet restore Utilme.sln
+
+      # The repository builds clean, so any warning is a regression. -warnaserror
+      # also turns a new NuGet advisory (NU1903) into a failure, which is the point.
+      - name: Build
+        run: dotnet build Utilme.sln --configuration Release --no-restore -warnaserror
+
+      # Runs on Microsoft.Testing.Platform via the test.runner setting in global.json.
+      # Do not add --nologo or other VSTest-era flags: MTP forwards unrecognised
+      # arguments to the test executable, which exits 5 with "Zero tests ran".
+      - name: Test
+        run: dotnet test --configuration Release

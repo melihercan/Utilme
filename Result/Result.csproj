@@ -6,7 +6,6 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <RootNamespace>UtilmeResult</RootNamespace>
     <AssemblyName>Utilme.Result</AssemblyName>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Authors>melihercan</Authors>
     <Description>A generic Result library.
 Reports status code of an operation. On success, the result object is associated, on error the error string is associated.</Description>
@@ -14,6 +13,7 @@ Reports status code of an operation. On success, the result object is associated
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/melihercan/Utilme</PackageProjectUrl>
     <PackageIcon>me.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIconUrl />
     <RepositoryUrl>https://github.com/melihercan/Utilme/tree/master/Result</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -29,10 +29,8 @@ The per-status members NotFound, Timeout, Cancelled, NotSupported(), InvalidData
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\doc\me.png">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
+    <None Include="..\doc\me.png" Pack="true" PackagePath="\" />
+    <None Include="README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>

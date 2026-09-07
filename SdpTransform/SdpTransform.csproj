@@ -4,24 +4,30 @@
 		<TargetFramework>net10.0</TargetFramework>
 		<AssemblyName>Utilme.SdpTransform</AssemblyName>
 		<RootNamespace>UtilmeSdpTransform</RootNamespace>
-		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Authors>melihercan</Authors>
 		<Description>SDP parser and writer for .NET.
 It transforms between SDP text, object, and JSON representations.</Description>
 		<Copyright>melihercan 2022</Copyright>
 		<PackageProjectUrl>https://github.com/melihercan/Utilme</PackageProjectUrl>
 		<PackageIcon>me.png</PackageIcon>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<RepositoryUrl>https://github.com/melihercan/Utilme/tree/master/SdpTransform</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>.NET SDP Transform Text Object JSON</PackageTags>
-		<PackageReleaseNotes>Creation</PackageReleaseNotes>
+		<PackageReleaseNotes>Retargeted to .NET 10 (netstandard2.0/2.1 and net5.0/net6.0 are no longer supported) and dropped all package dependencies.
+Fixed writer defects: bandwidth and directional extmap now survive a round trip, an attribute-free SDP no longer throws, and stray trailing whitespace is gone. ToText output is byte-identical to its input.
+Fixed parser defects: enum matching is case-insensitive, whitespace-only lines are ignored, field indicators are stripped from the start only, k=prompt is accepted, and ToSeconds handles minute and second suffixes.
+Added ToSdpResult, which reports parse diagnostics instead of writing to the console and swallowing exceptions. ToSdp is unchanged.
+Session-level and media-level attributes are now handled symmetrically.</PackageReleaseNotes>
+		<AssemblyVersion>26.09.07</AssemblyVersion>
+		<FileVersion>26.09.07</FileVersion>
+		<Version>26.09.07</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Include="..\doc\me.png">
-	    <Pack>True</Pack>
-	    <PackagePath>\</PackagePath>
-	  </None>
+	  <None Include="..\doc\me.png" Pack="true" PackagePath="\" />
+	  <None Include="README.md" Pack="true" PackagePath="\" />
 	</ItemGroup>
 
 
