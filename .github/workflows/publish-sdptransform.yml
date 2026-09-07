@@ -28,6 +28,9 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      # Lets the job request a GitHub OIDC token, which nuget.org exchanges for a
+      # short-lived API key. Nothing long-lived is stored in the repository.
+      id-token: write
 
     steps:
       - uses: actions/checkout@v7
@@ -81,20 +84,25 @@ jobs:
           path: artifacts/*.nupkg
           if-no-files-found: error
 
-      - name: Check the NuGet API key is configured
+      # Trusted Publishing: swap a GitHub OIDC token for an API key that nuget.org
+      # issues for one hour. Requested immediately before the push, because the key
+      # expires and each token buys exactly one key.
+      #
+      # Requires a Trusted Publishing policy on nuget.org naming this repository and
+      # this workflow file. No NUGET_API_KEY secret is involved.
+      - name: NuGet login
         if: github.event_name == 'push' || inputs.dry-run == false
-        run: |
-          if [ -z "${{ secrets.NUGET_API_KEY }}" ]; then
-            echo "::error::Repository secret NUGET_API_KEY is not set."
-            exit 1
-          fi
+        id: login
+        uses: NuGet/login@v1
+        with:
+          user: melihercan
 
       # --skip-duplicate makes a re-run harmless if the version is already published.
       - name: Push to NuGet
         if: github.event_name == 'push' || inputs.dry-run == false
         run: |
           dotnet nuget push "artifacts/*.nupkg" \
-            --api-key "${{ secrets.NUGET_API_KEY }}" \
+            --api-key "${{ steps.login.outputs.NUGET_API_KEY }}" \
             --source https://api.nuget.org/v3/index.json \
             --skip-duplicate
 
