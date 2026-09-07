@@ -49,21 +49,23 @@ Running it also prints one `==== SDP unsupported media description field:` warni
 
 - `ci.yml` — build and test on every push and PR to master. Builds with `-warnaserror`, so the
   repository's zero-warning bar is enforced there, and a new NuGet advisory fails the build.
-- `publish-result.yml` / `publish-sdptransform.yml` — one per package. Triggered by a tag
-  (`result-v<version>` / `sdptransform-v<version>`), or manually, where the default is a dry run that
-  packs and uploads the `.nupkg` as a build artifact without publishing. Both verify the tag matches
-  the csproj `<Version>` before packing, run the tests, and push with `--skip-duplicate`.
+- `publish.yml` — **one workflow for both packages**, deliberately. A NuGet Trusted Publishing policy
+  is bound to a single workflow file, so one file means one policy. Tag `v<version>` publishes
+  everything; `result-v<version>` or `sdptransform-v<version>` publishes just that package; a manual
+  run defaults to a dry run that packs and uploads the `.nupkg` files without publishing. It verifies
+  each tag matches the csproj `<Version>`, runs the tests, and pushes with `--skip-duplicate`.
 
 **Publishing uses NuGet Trusted Publishing, not an API key.** nuget.org now strongly discourages API
 keys for automated publishing. The job requests a GitHub OIDC token (`id-token: write`), and
 `NuGet/login@v1` exchanges it for an API key valid for one hour. No publishing secret is stored in
 the repository — do not reintroduce `NUGET_API_KEY`.
 
-This requires a Trusted Publishing policy on nuget.org **per workflow file**, since a policy names
-one workflow. Two workflows means two policies, each with Repository Owner `melihercan`, Repository
-`Utilme`, and the workflow file name only (`publish-result.yml` / `publish-sdptransform.yml`, without
-the `.github/workflows/` path). The login step deliberately sits immediately before the push: the key
-expires, and each OIDC token buys exactly one key.
+The single policy on nuget.org names Repository Owner `melihercan`, Repository `Utilme`, Workflow
+File `publish.yml` (file name only, no path), no Environment, and is scoped to the glob `Utilme.*` so
+it covers both packages, every future version, and any future `Utilme.X` package. **Do not split
+publishing back into per-package workflow files** — that would require a policy per file. The login
+step deliberately sits immediately before the push: the key expires, and each OIDC token buys exactly
+one key.
 
 `GeneratePackageOnBuild` has been **removed** from both libraries now that CI owns packaging — local
 builds no longer emit a `.nupkg`. Use `dotnet pack` explicitly when you want one.

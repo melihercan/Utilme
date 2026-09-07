@@ -1,0 +1,153 @@
+name: Publish
+
+# One workflow for every package, because a NuGet Trusted Publishing policy is bound to a single
+# workflow file. Keeping this as one file means one policy — scoped to "Utilme.*" — covers both
+# packages, every future version, and any future Utilme.X package.
+#
+# Ways in:
+#   * tag v<version>                — publishes every package
+#   * tag result-v<version>         — publishes Utilme.Result only
+#   * tag sdptransform-v<version>   — publishes Utilme.SdpTransform only
+#   * run manually                  — defaults to a dry run that packs and uploads the .nupkg
+#                                     files as build artifacts without publishing anything
+on:
+  push:
+    tags:
+      - 'v*'
+      - 'result-v*'
+      - 'sdptransform-v*'
+  workflow_dispatch:
+    inputs:
+      package:
+        description: 'Which package to publish'
+        type: choice
+        options: [both, result, sdptransform]
+        default: both
+      dry-run:
+        description: 'Pack only, do not push to NuGet'
+        type: boolean
+        default: true
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+env:
+  RESULT_PROJECT: Result/Result.csproj
+  SDP_PROJECT: SdpTransform/SdpTransform.csproj
+
+jobs:
+  publish:
+    name: Pack and publish
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      # Lets the job request a GitHub OIDC token, which nuget.org exchanges for a
+      # short-lived API key. Nothing long-lived is stored in the repository.
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: '10.0.x'
+
+      # Works out which projects this run covers, and which version a tag claims.
+      - name: Resolve targets
+        id: targets
+        run: |
+          set -euo pipefail
+          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then
+            case "${{ inputs.package }}" in
+              result)       projects="$RESULT_PROJECT" ;;
+              sdptransform) projects="$SDP_PROJECT" ;;
+              *)            projects="$RESULT_PROJECT $SDP_PROJECT" ;;
+            esac
+            version=''                       # nothing to verify on a manual run
+          else
+            case "$GITHUB_REF_NAME" in
+              result-v*)       projects="$RESULT_PROJECT";                    version="${GITHUB_REF_NAME#result-v}" ;;
+              sdptransform-v*) projects="$SDP_PROJECT";                       version="${GITHUB_REF_NAME#sdptransform-v}" ;;
+              v*)              projects="$RESULT_PROJECT $SDP_PROJECT";       version="${GITHUB_REF_NAME#v}" ;;
+              *)               echo "::error::Unrecognised tag $GITHUB_REF_NAME"; exit 1 ;;
+            esac
+          fi
+          echo "projects=$projects" >> "$GITHUB_OUTPUT"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "Projects: $projects"
+          echo "Version:  ${version:-(not checked)}"
+
+      # Catches the classic release bug: tagging one version while a csproj still says another.
+      - name: Verify the tag matches the project versions
+        if: steps.targets.outputs.version != ''
+        run: |
+          set -euo pipefail
+          tag='${{ steps.targets.outputs.version }}'
+          for project in ${{ steps.targets.outputs.projects }}; do
+            version=$(sed -n 's|.*<Version>\(.*\)</Version>.*|\1|p' "$project" | head -1)
+            echo "$project declares $version, tag says $tag"
+            if [ "$version" != "$tag" ]; then
+              echo "::error::Tag $GITHUB_REF_NAME does not match <Version>$version</Version> in $project"
+              exit 1
+            fi
+          done
+
+      - name: Restore
+        run: dotnet restore Utilme.sln
+
+      - name: Build
+        run: dotnet build Utilme.sln --configuration Release --no-restore -warnaserror
+
+      # Never publish a package whose tests do not pass.
+      - name: Test
+        run: dotnet test --configuration Release
+
+      - name: Pack
+        run: |
+          set -euo pipefail
+          for project in ${{ steps.targets.outputs.projects }}; do
+            dotnet pack "$project" \
+              --configuration Release \
+              --output artifacts \
+              -p:ContinuousIntegrationBuild=true
+          done
+
+      - name: Show package contents
+        run: |
+          for pkg in artifacts/*.nupkg; do
+            echo "== $pkg"
+            unzip -l "$pkg"
+          done
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: nupkg
+          path: artifacts/*.nupkg
+          if-no-files-found: error
+
+      # Trusted Publishing: swap a GitHub OIDC token for an API key that nuget.org
+      # issues for one hour. Requested immediately before the push, because the key
+      # expires and each token buys exactly one key.
+      #
+      # Requires a Trusted Publishing policy on nuget.org naming this repository and
+      # this workflow file, scoped to Utilme.*. No API key secret is involved.
+      - name: NuGet login
+        if: github.event_name == 'push' || inputs.dry-run == false
+        id: login
+        uses: NuGet/login@v1
+        with:
+          user: melihercan
+
+      # --skip-duplicate makes a re-run harmless if the version is already published.
+      - name: Push to NuGet
+        if: github.event_name == 'push' || inputs.dry-run == false
+        run: |
+          dotnet nuget push "artifacts/*.nupkg" \
+            --api-key "${{ steps.login.outputs.NUGET_API_KEY }}" \
+            --source https://api.nuget.org/v3/index.json \
+            --skip-duplicate
+
+      - name: Dry run summary
+        if: github.event_name == 'workflow_dispatch' && inputs.dry-run
+        run: echo "::notice::Dry run - packages built and uploaded as artifacts, nothing published."
