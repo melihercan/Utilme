@@ -1,24 +1,12 @@
 ﻿using System;
-using System.Buffers;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 
 namespace UtilmeSdpTransform;
 
 internal static class UtilityExtensions
 {
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static ReadOnlySpan<byte> ToSpan(this ReadOnlySequence<byte> buffer)
-    {
-        if (buffer.IsSingleSegment)
-        {
-            return buffer.First.Span;
-        }
-        return buffer.ToArray();
-    }
-    
     /// <summary>
     /// Removes <paramref name="prefix"/> only when the string actually starts with it.
     /// </summary>
