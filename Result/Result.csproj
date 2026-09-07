@@ -1,8 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0; netstandard2.1; net5.0; net6.0</TargetFrameworks>
-    <LangVersion>10.0</LangVersion>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <RootNamespace>UtilmeResult</RootNamespace>
     <AssemblyName>Utilme.Result</AssemblyName>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
@@ -17,10 +18,14 @@ Reports status code of an operation. On success, the result object is associated
     <RepositoryUrl>https://github.com/melihercan/Utilme/tree/master/Result</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>.NET Result Status Error</PackageTags>
-    <PackageReleaseNotes>Added NetworkUp and NetworkDown status codes.</PackageReleaseNotes>
-    <AssemblyVersion>1.0.1</AssemblyVersion>
-    <FileVersion>1.0.1</FileVersion>
-    <Version>1.0.1</Version>
+    <PackageReleaseNotes>Retargeted to .NET 10 (netstandard2.0/2.1 and net5.0/net6.0 are no longer supported).
+Added Fail(status, message) so a specific status can carry a caller-supplied message.
+Added the non-generic Result factory with type inference, Unit for void results, IsError, TryGetValue, GetValueOrDefault and ToString.
+Added composition operators (Match, Map, Then, Tap, Else and async variants) in the Utilme.Functional namespace.
+The per-status members NotFound, Timeout, Cancelled, NotSupported(), InvalidData(), NetworkUp() and NetworkDown() are hidden from IntelliSense but remain fully supported.</PackageReleaseNotes>
+    <AssemblyVersion>26.09.07</AssemblyVersion>
+    <FileVersion>26.09.07</FileVersion>
+    <Version>26.09.07</Version>
   </PropertyGroup>
 
   <ItemGroup>

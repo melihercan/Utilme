@@ -1,33 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.Serialization;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
-namespace Utilme.SdpTransform
+namespace Utilme.SdpTransform;
+
+[JsonConverter(typeof(JsonStringEnumConverter<BandwidthType>))]
+public enum BandwidthType
 {
-    [JsonConverter(typeof(JsonStringEnumMemberConverter))]
-    public enum BandwidthType
-    {
-        [EnumMember(Value = "")]
-        [Display(Name="AS")]
-        ApplicationSpecific,
+    [JsonStringEnumMemberName("AS")]
+    [Display(Name="AS")]
+    ApplicationSpecific,
 
-        [EnumMember(Value = "CT")]
-        [Display(Name = "CT")]
-        ConferenceTotal,
+    [JsonStringEnumMemberName("CT")]
+    [Display(Name = "CT")]
+    ConferenceTotal,
 
-        [EnumMember(Value = "RS")]
-        [Display(Name = "RS")]
-        RtcpSender,
+    [JsonStringEnumMemberName("RS")]
+    [Display(Name = "RS")]
+    RtcpSender,
 
-        [EnumMember(Value = "RR")]
-        [Display(Name = "RR")]
-        RtcpReceiver,
+    [JsonStringEnumMemberName("RR")]
+    [Display(Name = "RR")]
+    RtcpReceiver,
 
-        [EnumMember(Value = "TIAS")]
-        [Display(Name = "TIAS")]
-        TransportIndependentMaximumBandwidth,
-    }
+    [JsonStringEnumMemberName("TIAS")]
+    [Display(Name = "TIAS")]
+    TransportIndependentMaximumBandwidth,
 }

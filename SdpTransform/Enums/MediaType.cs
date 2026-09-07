@@ -1,33 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.Serialization;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
-namespace Utilme.SdpTransform
+namespace Utilme.SdpTransform;
+
+[JsonConverter(typeof(JsonStringEnumConverter<MediaType>))]
+public enum MediaType
 {
-    [JsonConverter(typeof(JsonStringEnumMemberConverter))]
-    public enum MediaType
-    {
-        [EnumMember(Value = "audio")]
-        [Display(Name = "audio")]
-        Audio,
+    [JsonStringEnumMemberName("audio")]
+    [Display(Name = "audio")]
+    Audio,
 
-        [EnumMember(Value = "video")]
-        [Display(Name = "video")]
-        Video,
+    [JsonStringEnumMemberName("video")]
+    [Display(Name = "video")]
+    Video,
 
-        [EnumMember(Value = "text")]
-        [Display(Name = "text")]
-        Text,
+    [JsonStringEnumMemberName("text")]
+    [Display(Name = "text")]
+    Text,
 
-        [EnumMember(Value = "application")]
-        [Display(Name = "application")]
-        Application,
+    [JsonStringEnumMemberName("application")]
+    [Display(Name = "application")]
+    Application,
 
-        [EnumMember(Value = "message")]
-        [Display(Name = "message")]
-        Message,
-    }
+    [JsonStringEnumMemberName("message")]
+    [Display(Name = "message")]
+    Message,
 }

@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Utilme.SdpTransform
+namespace Utilme.SdpTransform;
+
+public class Timing
 {
-    public class Timing
-    {
-        public DateTime StartTime { get; set; }
-        public DateTime StopTime { get; set; }
-    }
+    public DateTime StartTime { get; set; }
+    public DateTime StopTime { get; set; }
 }

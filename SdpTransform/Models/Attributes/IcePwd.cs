@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace Utilme.SdpTransform;
 
-namespace Utilme.SdpTransform
+public class IcePwd
 {
-    public class IcePwd
-    {
-        public const string Label = "ice-pwd:";
+    public const string Label = "ice-pwd:";
 
-        public string Password { get; set; }
-    }
+    public string Password { get; set; }
 }

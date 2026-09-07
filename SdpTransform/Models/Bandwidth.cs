@@ -1,8 +1,7 @@
-﻿namespace Utilme.SdpTransform
+﻿namespace Utilme.SdpTransform;
+
+public class Bandwidth
 {
-    public class Bandwidth
-    {
-        public BandwidthType Type { get; set; }
-        public int Value { get; set; }
-    }
+    public BandwidthType Type { get; set; }
+    public int Value { get; set; }
 }

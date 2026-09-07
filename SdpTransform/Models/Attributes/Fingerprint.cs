@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace Utilme.SdpTransform;
 
-namespace Utilme.SdpTransform
+public class Fingerprint
 {
-    public class Fingerprint
-    {
-        public const string Label = "fingerprint:";
+    public const string Label = "fingerprint:";
 
-        public HashFunction HashFunction { get; set; }
+    public HashFunction HashFunction { get; set; }
 
-        // Each byte in upper-case hex, separated by colons.
-        public byte[] HashValue { get; set; }
-    }
+    // Each byte in upper-case hex, separated by colons.
+    public byte[] HashValue { get; set; }
 }

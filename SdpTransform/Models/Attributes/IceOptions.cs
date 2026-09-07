@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace Utilme.SdpTransform;
 
-namespace Utilme.SdpTransform
+public class IceOptions
 {
-    public class IceOptions
-    {
-        public const string Label = "ice-options:";
+    public const string Label = "ice-options:";
 
-        public string[] Tags { get; set; }
-    }
+    public string[] Tags { get; set; }
 }

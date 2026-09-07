@@ -1,29 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.Serialization;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
-namespace Utilme.SdpTransform
+namespace Utilme.SdpTransform;
+
+[JsonConverter(typeof(JsonStringEnumConverter<SetupRole>))]
+public enum SetupRole
 {
-    [JsonConverter(typeof(JsonStringEnumMemberConverter))]
-    public enum SetupRole
-    {
-        [EnumMember(Value = "active")]
-        [Display(Name = "active")]
-        Active,
+    [JsonStringEnumMemberName("active")]
+    [Display(Name = "active")]
+    Active,
 
-        [EnumMember(Value = "passive")]
-        [Display(Name = "passive")]
-        Passive,
+    [JsonStringEnumMemberName("passive")]
+    [Display(Name = "passive")]
+    Passive,
 
-        [EnumMember(Value = "actpass")]
-        [Display(Name = "actpass")]
-        ActPass,
+    [JsonStringEnumMemberName("actpass")]
+    [Display(Name = "actpass")]
+    ActPass,
 
-        [EnumMember(Value = "holdconn")]
-        [Display(Name = "holdconn")]
-        HoldConn
-    }
+    [JsonStringEnumMemberName("holdconn")]
+    [Display(Name = "holdconn")]
+    HoldConn
 }

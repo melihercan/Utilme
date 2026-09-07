@@ -1,29 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.Serialization;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
-namespace Utilme.SdpTransform
+namespace Utilme.SdpTransform;
+
+[JsonConverter(typeof(JsonStringEnumConverter<CandidateType>))]
+public enum CandidateType
 {
-    [JsonConverter(typeof(JsonStringEnumMemberConverter))]
-    public enum CandidateType
-    {
-        [EnumMember(Value = "host")]
-        [Display(Name="host")]
-        Host,
+    [JsonStringEnumMemberName("host")]
+    [Display(Name="host")]
+    Host,
 
-        [EnumMember(Value = "srflx")]
-        [Display(Name = "srflx")]
-        Srflx,
+    [JsonStringEnumMemberName("srflx")]
+    [Display(Name = "srflx")]
+    Srflx,
 
-        [EnumMember(Value = "prlfx")]
-        [Display(Name = "prlfx")]
-        Prflx,
+    [JsonStringEnumMemberName("prlfx")]
+    [Display(Name = "prlfx")]
+    Prflx,
 
-        [EnumMember(Value = "relay")]
-        [Display(Name = "relay")]
-        Relay
-    }
+    [JsonStringEnumMemberName("relay")]
+    [Display(Name = "relay")]
+    Relay
 }

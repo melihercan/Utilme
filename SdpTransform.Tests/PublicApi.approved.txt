@@ -1,0 +1,435 @@
+enum Utilme.SdpTransform.AddrType
+    Ip4 = 0
+    Ip6 = 1
+
+class Utilme.SdpTransform.Attributes
+    .ctor()
+    Boolean? EndOfCandidates { get; set; }
+    Boolean? ExtmapAllowMixed { get; set; }
+    Boolean? IceLite { get; set; }
+    Boolean? RecvOnly { get; set; }
+    Boolean? RtcpMux { get; set; }
+    Boolean? RtcpRsize { get; set; }
+    Boolean? SendOnly { get; set; }
+    Boolean? SendRecv { get; set; }
+    Fingerprint Fingerprint { get; set; }
+    Group Group { get; set; }
+    IList<Candidate> Candidates { get; set; }
+    IList<Extmap> Extmaps { get; set; }
+    IList<Fmtp> Fmtps { get; set; }
+    IList<Rid> Rids { get; set; }
+    IList<RtcpFb> RtcpFbs { get; set; }
+    IList<Rtpmap> Rtpmaps { get; set; }
+    IList<Ssrc> Ssrcs { get; set; }
+    IList<SsrcGroup> SsrcGroups { get; set; }
+    IceOptions IceOptions { get; set; }
+    IcePwd IcePwd { get; set; }
+    IceUfrag IceUfrag { get; set; }
+    MaxMessageSize MaxMessageSize { get; set; }
+    Mid Mid { get; set; }
+    Msid Msid { get; set; }
+    MsidSemantic MsidSemantic { get; set; }
+    Rtcp Rtcp { get; set; }
+    SctpPort SctpPort { get; set; }
+    Setup Setup { get; set; }
+    Simulcast Simulcast { get; set; }
+    const String EndOfCandidatesLabel = "end-of-candidates"
+    const String ExtmapAllowMixedLabel = "extmap-allow-mixed"
+    const String IceLiteLabel = "ice-lite"
+    const String RecvOnlyLabel = "recvonly"
+    const String RtcpMuxLabel = "rtcp-mux"
+    const String RtcpRsizeLabel = "rtcp-rsize"
+    const String SendOnlyLabel = "sendonly"
+    const String SendRecvLabel = "sendrecv"
+
+class Utilme.SdpTransform.Bandwidth
+    .ctor()
+    BandwidthType Type { get; set; }
+    Int32 Value { get; set; }
+
+enum Utilme.SdpTransform.BandwidthType
+    ApplicationSpecific = 0
+    ConferenceTotal = 1
+    RtcpReceiver = 3
+    RtcpSender = 2
+    TransportIndependentMaximumBandwidth = 4
+
+class Utilme.SdpTransform.Candidate
+    .ctor()
+    CandidateTransport Transport { get; set; }
+    CandidateType Type { get; set; }
+    Int32 ComponentId { get; set; }
+    Int32 Port { get; set; }
+    Int32 Priority { get; set; }
+    Int32? RelPort { get; set; }
+    String ConnectionAddress { get; set; }
+    String Foundation { get; set; }
+    String RelAddr { get; set; }
+    ValueTuple<String, String>[] Extensions { get; set; }
+    const String Label = "candidate:"
+    const String Raddr = "raddr"
+    const String Rport = "rport"
+    const String Typ = "typ"
+
+enum Utilme.SdpTransform.CandidateTransport
+    Tcp = 1
+    Udp = 0
+
+enum Utilme.SdpTransform.CandidateType
+    Host = 0
+    Prflx = 2
+    Relay = 3
+    Srflx = 1
+
+class Utilme.SdpTransform.ConnectionData
+    .ctor()
+    AddrType AddrType { get; set; }
+    NetType NetType { get; set; }
+    String ConnectionAddress { get; set; }
+
+enum Utilme.SdpTransform.Direction
+    Inactive = 3
+    RecvOnly = 2
+    SendOnly = 1
+    SendRecv = 0
+
+class Utilme.SdpTransform.EncryptionKey
+    .ctor()
+    EncryptionKeyMethod Method { get; set; }
+    String Value { get; set; }
+
+enum Utilme.SdpTransform.EncryptionKeyMethod
+    Base64 = 1
+    Clear = 0
+    Prompt = 3
+    Uri = 2
+
+class Utilme.SdpTransform.Extmap
+    .ctor()
+    Direction? Direction { get; set; }
+    Int32 Value { get; set; }
+    String ExtensionAttributes { get; set; }
+    Uri Uri { get; set; }
+    const String Label = "extmap:"
+
+class Utilme.SdpTransform.Fingerprint
+    .ctor()
+    Byte[] HashValue { get; set; }
+    HashFunction HashFunction { get; set; }
+    const String Label = "fingerprint:"
+
+class Utilme.SdpTransform.Fmtp
+    .ctor()
+    Int32 PayloadType { get; set; }
+    String Value { get; set; }
+    const String Label = "fmtp:"
+
+class Utilme.SdpTransform.Group
+    .ctor()
+    GroupSemantics Semantics { get; set; }
+    String[] SemanticsExtensions { get; set; }
+    const String Label = "group:"
+
+enum Utilme.SdpTransform.GroupSemantics
+    Bundle = 2
+    FlowIdentification = 1
+    LipSynchronization = 0
+
+enum Utilme.SdpTransform.HashFunction
+    Md2 = 5
+    Md5 = 6
+    Sha1 = 0
+    Sha224 = 1
+    Sha256 = 2
+    Sha384 = 3
+    Sha512 = 4
+
+class Utilme.SdpTransform.IceOptions
+    .ctor()
+    String[] Tags { get; set; }
+    const String Label = "ice-options:"
+
+class Utilme.SdpTransform.IcePwd
+    .ctor()
+    String Password { get; set; }
+    const String Label = "ice-pwd:"
+
+class Utilme.SdpTransform.IceUfrag
+    .ctor()
+    String Ufrag { get; set; }
+    const String Label = "ice-ufrag:"
+
+class Utilme.SdpTransform.MaxMessageSize
+    .ctor()
+    Int32 Size { get; set; }
+    const String Label = "max-message-size:"
+
+class Utilme.SdpTransform.MediaDescription
+    .ctor()
+    Attributes Attributes { get; set; }
+    ConnectionData ConnectionData { get; set; }
+    EncryptionKey EncryptionKey { get; set; }
+    IList<Bandwidth> Bandwidths { get; set; }
+    IList<String> Fmts { get; set; }
+    Int32 Port { get; set; }
+    MediaType Media { get; set; }
+    String Information { get; set; }
+    String Proto { get; set; }
+
+enum Utilme.SdpTransform.MediaType
+    Application = 3
+    Audio = 0
+    Message = 4
+    Text = 2
+    Video = 1
+
+class Utilme.SdpTransform.Mid
+    .ctor()
+    String Id { get; set; }
+    const String Label = "mid:"
+
+class Utilme.SdpTransform.ModelExtensions
+    static Bandwidth ToBandwidth(String str)
+    static Byte[] HexadecimalStringToByteArray(String hexadecimalString)
+    static Candidate ToCandidate(String str)
+    static ConnectionData ToConnectionData(String str)
+    static Dictionary<String, Object> ToDictionary(Fmtp fmtp)
+    static EncryptionKey ToEncryptionKey(String str)
+    static Extmap ToExtmap(String str)
+    static Fingerprint ToFingerprint(String str)
+    static Fmtp ToFmtp(Dictionary<String, Object> dictionary, Int32 payloadType)
+    static Fmtp ToFmtp(String str)
+    static Group ToGroup(String str)
+    static IceOptions ToIceOptions(String str)
+    static IcePwd ToIcePwd(String str)
+    static IceUfrag ToIceUfrag(String str)
+    static Int32 ToProtocolVersion(String str)
+    static Int64 ToSeconds(String str)
+    static List<String> ToEmailAddresses(String str)
+    static List<String> ToPhoneNumbers(String str)
+    static List<TimeZone> ToTimeZones(String str)
+    static MaxMessageSize ToMaxMessageSize(String str)
+    static MediaDescription ToMediaDescription(String str)
+    static Mid ToMid(String str)
+    static Msid ToMsid(String str)
+    static MsidSemantic ToMsidSemantic(String str)
+    static Origin ToOrigin(String str)
+    static RepeatTime ToRepeatTime(String str)
+    static Rid ToRid(String str)
+    static Rtcp ToRtcp(String str)
+    static RtcpFb ToRtcpFb(String str)
+    static Rtpmap ToRtpmap(String str)
+    static SctpPort ToSctpPort(String str)
+    static Sdp ToSdp(String str)
+    static SdpParseResult ToSdpResult(String str)
+    static Setup ToSetup(String str)
+    static Simulcast ToSimulcast(String str)
+    static Ssrc ToSsrc(String str)
+    static SsrcGroup ToSsrcGroup(String str)
+    static String ToEmailAddressesText(IList<String> emails)
+    static String ToInformation(String str)
+    static String ToInformationText(String info)
+    static String ToPhoneNumbersText(IList<String> phones)
+    static String ToProtocolVersionText(Int32 version)
+    static String ToSessionName(String str)
+    static String ToSessionNameText(String name)
+    static String ToText(Bandwidth bandwidth)
+    static String ToText(Candidate candidate)
+    static String ToText(ConnectionData connectionData)
+    static String ToText(EncryptionKey encryptionKey)
+    static String ToText(Extmap extmap)
+    static String ToText(Fingerprint fingerprint)
+    static String ToText(Fmtp fmtp)
+    static String ToText(Group group)
+    static String ToText(IList<TimeZone> timeZones)
+    static String ToText(IceOptions iceOptions)
+    static String ToText(IcePwd icePwd)
+    static String ToText(IceUfrag iceUfrag)
+    static String ToText(MaxMessageSize size)
+    static String ToText(MediaDescription mediaDescription)
+    static String ToText(Mid mid)
+    static String ToText(Msid msid)
+    static String ToText(MsidSemantic msidSemantic)
+    static String ToText(Origin origin)
+    static String ToText(RepeatTime repeatTime)
+    static String ToText(Rid rid)
+    static String ToText(Rtcp rtcp)
+    static String ToText(RtcpFb rtcpFb)
+    static String ToText(Rtpmap rtpmap)
+    static String ToText(SctpPort sctpPort)
+    static String ToText(Sdp sdp)
+    static String ToText(Setup setup)
+    static String ToText(Simulcast simulcast)
+    static String ToText(Ssrc ssrc)
+    static String ToText(SsrcGroup ssrcGroup)
+    static String ToText(Timing timing)
+    static String ToText(Uri uri)
+    static Timing ToTiming(String str)
+    static Uri ToUri(String str)
+
+class Utilme.SdpTransform.Msid
+    .ctor()
+    String AppData { get; set; }
+    String Id { get; set; }
+    const String Label = "msid:"
+
+class Utilme.SdpTransform.MsidSemantic
+    .ctor()
+    String Token { get; set; }
+    String[] IdList { get; set; }
+    const String AllIds = "*"
+    const String Label = "msid-semantic:"
+    const String WebRtcMediaStreamToken = "WMS"
+
+enum Utilme.SdpTransform.NetType
+    Internet = 0
+
+class Utilme.SdpTransform.Origin
+    .ctor()
+    AddrType AddrType { get; set; }
+    NetType NetType { get; set; }
+    String UnicastAddress { get; set; }
+    String UserName { get; set; }
+    UInt32 SessionVersion { get; set; }
+    UInt64 SessionId { get; set; }
+    const String DefaultUserName = "-"
+
+class Utilme.SdpTransform.RepeatTime
+    .ctor()
+    IList<TimeSpan> OffsetsFromStartTime { get; set; }
+    TimeSpan ActiveDuration { get; set; }
+    TimeSpan RepeatInterval { get; set; }
+
+class Utilme.SdpTransform.Rid
+    .ctor()
+    RidDirection Direction { get; set; }
+    String Id { get; set; }
+    String[] FmtList { get; set; }
+    String[] Restrictions { get; set; }
+    const String Label = "rid:"
+
+enum Utilme.SdpTransform.RidDirection
+    Recv = 0
+    Send = 1
+
+class Utilme.SdpTransform.Rtcp
+    .ctor()
+    AddrType? AddrType { get; set; }
+    Int32 Port { get; set; }
+    NetType? NetType { get; set; }
+    String ConnectionAddress { get; set; }
+    const String Label = "rtcp:"
+
+class Utilme.SdpTransform.RtcpFb
+    .ctor()
+    Int32 PayloadType { get; set; }
+    String SubType { get; set; }
+    String Type { get; set; }
+    const String Label = "rtcp-fb:"
+
+class Utilme.SdpTransform.Rtpmap
+    .ctor()
+    Int32 ClockRate { get; set; }
+    Int32 PayloadType { get; set; }
+    Int32? Channels { get; set; }
+    String EncodingName { get; set; }
+    const String Label = "rtpmap:"
+
+class Utilme.SdpTransform.SctpPort
+    .ctor()
+    Int32 Port { get; set; }
+    const String Label = "sctp-port:"
+
+class Utilme.SdpTransform.Sdp
+    .ctor()
+    Attributes Attributes { get; set; }
+    ConnectionData ConnectionData { get; set; }
+    EncryptionKey EncryptionKey { get; set; }
+    IList<Bandwidth> Bandwidths { get; set; }
+    IList<MediaDescription> MediaDescriptions { get; set; }
+    IList<RepeatTime> RepeatTimes { get; set; }
+    IList<String> EmailAddresses { get; set; }
+    IList<String> PhoneNumbers { get; set; }
+    IList<TimeZone> TimeZones { get; set; }
+    IList<Timing> Timings { get; set; }
+    Int32 ProtocolVersion { get; set; }
+    Origin Origin { get; set; }
+    String SessionInformation { get; set; }
+    String SessionName { get; set; }
+    Uri Uri { get; set; }
+    const String AttributeIndicator = "a="
+    const String BandwidthIndicator = "b="
+    const String CRLF = "\r\n"
+    const String ConnectionDataIndicator = "c="
+    const String DefaultSessionName = "-"
+    const String EmailAddressIndicator = "e="
+    const String EncryptionKeyIndicator = "k="
+    const String InformationIndicator = "i="
+    const String MediaDescriptionIndicator = "m="
+    const String OriginIndicator = "o="
+    const String PhoneNumberIndicator = "p="
+    const String ProtocolVersionIndicator = "v="
+    const String RepeatTimeIndicator = "r="
+    const String SessionNameIndicator = "s="
+    const String TimeZoneIndicator = "z="
+    const String TimingIndicator = "t="
+    const String UriIndicator = "u="
+
+class Utilme.SdpTransform.SdpDiagnostic
+    .ctor(SdpDiagnosticSeverity severity, Int32 lineNumber, String line, String message)
+    Int32 LineNumber { get; }
+    SdpDiagnosticSeverity Severity { get; }
+    String Line { get; }
+    String Message { get; }
+    String ToString()
+
+enum Utilme.SdpTransform.SdpDiagnosticSeverity
+    Error = 1
+    Warning = 0
+
+class Utilme.SdpTransform.SdpParseResult
+    .ctor(Sdp sdp, IReadOnlyList<SdpDiagnostic> diagnostics)
+    Boolean HasDiagnostics { get; }
+    Boolean IsValid { get; }
+    IReadOnlyList<SdpDiagnostic> Diagnostics { get; }
+    Sdp Sdp { get; }
+
+class Utilme.SdpTransform.Setup
+    .ctor()
+    SetupRole Role { get; set; }
+    const String Label = "setup:"
+
+enum Utilme.SdpTransform.SetupRole
+    ActPass = 2
+    Active = 0
+    HoldConn = 3
+    Passive = 1
+
+class Utilme.SdpTransform.Simulcast
+    .ctor()
+    RidDirection Direction { get; set; }
+    String[] IdList { get; set; }
+    const String Label = "simulcast:"
+
+class Utilme.SdpTransform.Ssrc
+    .ctor()
+    String Attribute { get; set; }
+    String Value { get; set; }
+    UInt32 Id { get; set; }
+    const String Label = "ssrc:"
+
+class Utilme.SdpTransform.SsrcGroup
+    .ctor()
+    String Semantics { get; set; }
+    String[] SsrcIds { get; set; }
+    const String Label = "ssrc-group:"
+
+class Utilme.SdpTransform.TimeZone
+    .ctor()
+    DateTime AdjustmentTime { get; set; }
+    TimeSpan Offset { get; set; }
+
+class Utilme.SdpTransform.Timing
+    .ctor()
+    DateTime StartTime { get; set; }
+    DateTime StopTime { get; set; }

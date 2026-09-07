@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace Utilme.SdpTransform;
 
-namespace Utilme.SdpTransform
+public class Mid
 {
-    public class Mid
-    {
-        public const string Label = "mid:";
+    public const string Label = "mid:";
 
-        public string Id { get; set; }
-    }
+    public string Id { get; set; }
 }

@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace Utilme.SdpTransform;
 
-namespace Utilme.SdpTransform
+public class IceUfrag
 {
-    public class IceUfrag
-    {
-        public const string Label = "ice-ufrag:";
+    public const string Label = "ice-ufrag:";
 
-        public string Ufrag { get; set; }
-    }
+    public string Ufrag { get; set; }
 }

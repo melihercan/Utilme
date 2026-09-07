@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace Utilme.SdpTransform;
 
-namespace Utilme.SdpTransform
+public class Setup
 {
-    public class Setup
-    {
-        public const string Label = "setup:";
+    public const string Label = "setup:";
 
-        public SetupRole Role { get; set; }
-    }
+    public SetupRole Role { get; set; }
 }

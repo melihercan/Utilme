@@ -1,29 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.Serialization;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
-namespace Utilme.SdpTransform
+namespace Utilme.SdpTransform;
+
+[JsonConverter(typeof(JsonStringEnumConverter<Direction>))]
+public enum Direction
 {
-    [JsonConverter(typeof(JsonStringEnumMemberConverter))]
-    public enum Direction
-    {
-        [EnumMember(Value = "sendrecv")]
-        [Display(Name = "sendrecv")]
-        SendRecv,
+    [JsonStringEnumMemberName("sendrecv")]
+    [Display(Name = "sendrecv")]
+    SendRecv,
 
-        [EnumMember(Value = "sendonly")]
-        [Display(Name = "sendonly")]
-        SendOnly,
+    [JsonStringEnumMemberName("sendonly")]
+    [Display(Name = "sendonly")]
+    SendOnly,
 
-        [EnumMember(Value = "recvonly")]
-        [Display(Name = "recvonly")]
-        RecvOnly,
+    [JsonStringEnumMemberName("recvonly")]
+    [Display(Name = "recvonly")]
+    RecvOnly,
 
-        [EnumMember(Value = "inactive")]
-        [Display(Name = "inactive")]
-        Inactive
-    }
+    [JsonStringEnumMemberName("inactive")]
+    [Display(Name = "inactive")]
+    Inactive
 }
