@@ -90,6 +90,10 @@ Sdp? back = JsonSerializer.Deserialize<Sdp>(json, options);
 Enums serialise to their SDP token — `"IN"`, `"IP4"`, `"audio"`, `"sha-512"`, `"actpass"` — not to
 their C# member names.
 
+The serialised document mirrors the object graph one-for-one:
+
+![The WebRTC offer serialised to JSON](https://raw.githubusercontent.com/melihercan/Utilme/master/doc/SdpJson.png)
+
 ## Building a document by hand
 
 ```csharp
