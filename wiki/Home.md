@@ -5,7 +5,7 @@ Utility libraries for .NET, published to NuGet as independent packages.
 | Package | Version | Targets | Dependencies | Docs |
 |---|---|---|---|---|
 | [Utilme.Result](https://www.nuget.org/packages/Utilme.Result) | 26.9.7 | `net10.0` | none | [Getting Started](Result-Getting-Started) |
-| [Utilme.SdpTransform](https://www.nuget.org/packages/Utilme.SdpTransform) | 1.0.0 | `net10.0` | none | [SdpTransform](SdpTransform) |
+| [Utilme.SdpTransform](https://www.nuget.org/packages/Utilme.SdpTransform) | 26.9.7 | `net10.0` | none | [Getting Started](SdpTransform-Getting-Started) |
 
 The two libraries are unrelated and share no code.
 
@@ -34,15 +34,24 @@ with no constraints, that page most likely points you at ErrorOr instead.
 SDP parser and writer — converts between SDP text, an object graph, and JSON. Useful for VoIP and
 WebRTC work.
 
-→ **[SdpTransform](SdpTransform)** (documentation pending a refactor; known issues are listed there)
+```csharp
+using Utilme.SdpTransform;
+
+Sdp? sdp = sdpText.ToSdp();          // null if it cannot be parsed
+string text = sdp!.ToText();         // byte-identical to what it parsed from
+```
+
+→ **[Getting Started](SdpTransform-Getting-Started)** · **[API Reference](SdpTransform-API-Reference)**
 
 ## Repository
 
-- [Design Notes](Result-Design-Notes) — the constraints that shape `Utilme.Result` and the
-  invariants any change must preserve.
-- [Refactor Log](Result-Refactor-Log) — the .NET 10 migration and the four-phase `Result` refactor,
-  including what changed in 26.9.7 and why nothing broke.
+- Design Notes — the constraints that shape each library and the invariants any change must
+  preserve: [Result](Result-Design-Notes), [SdpTransform](SdpTransform-Design-Notes).
+- Refactor Logs — the .NET 10 migration and what changed in 26.9.7:
+  [Result](Result-Refactor-Log), [SdpTransform](SdpTransform-Refactor-Log).
 - [Building and Testing](Building-and-Testing) — commands, and the `dotnet test` setup gotchas.
+
+Both packages are released by GitHub Actions on a `result-v*` / `sdptransform-v*` tag.
 
 ## Licence
 
