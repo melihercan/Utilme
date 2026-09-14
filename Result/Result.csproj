@@ -25,7 +25,6 @@ Added composition operators (Match, Map, Then, Tap, Else and async variants) in 
 The per-status members NotFound, Timeout, Cancelled, NotSupported(), InvalidData(), NetworkUp() and NetworkDown() are hidden from IntelliSense but remain fully supported.</PackageReleaseNotes>
     <AssemblyVersion>26.09.07</AssemblyVersion>
     <FileVersion>26.09.07</FileVersion>
-    <Version>26.09.07</Version>
   </PropertyGroup>
 
   <ItemGroup>

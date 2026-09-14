@@ -22,7 +22,6 @@ Added ToSdpResult, which reports parse diagnostics instead of writing to the con
 Session-level and media-level attributes are now handled symmetrically.</PackageReleaseNotes>
 		<AssemblyVersion>26.09.07</AssemblyVersion>
 		<FileVersion>26.09.07</FileVersion>
-		<Version>26.09.07</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
