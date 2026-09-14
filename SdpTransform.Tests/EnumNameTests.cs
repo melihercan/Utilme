@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using System.Text.Json.Serialization;
-using FluentAssertions;
+using AwesomeAssertions;
 using Utilme.SdpTransform;
 using Xunit;
 

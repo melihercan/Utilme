@@ -1,6 +1,6 @@
 using System.ComponentModel;
 using System.Reflection;
-using FluentAssertions;
+using AwesomeAssertions;
 using Utilme;
 using Xunit;
 
